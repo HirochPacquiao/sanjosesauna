@@ -8,142 +8,153 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root { --ink:#1a1814; --fog:#f5f2ec; --warm:#e8e0d0; --gold:#b8965a; --stone:#7a7268; }
-html { scroll-behavior: smooth; }
-body { background:var(--ink); color:var(--fog); font-family:'DM Sans',sans-serif; font-weight:300; overflow-x:hidden; }
-.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; padding:3rem 1.5rem; text-align:center; overflow:hidden; }
-.steam-bg { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-.steam-line { position:absolute; bottom:0; width:1px; background:linear-gradient(to top, transparent, rgba(255,255,255,0.07) 60%, transparent); animation:rise linear infinite; opacity:0; }
-.steam-line:nth-child(1)  { left:10%; height:60vh; animation-duration:9s;  animation-delay:0s; }
-.steam-line:nth-child(2)  { left:23%; height:80vh; animation-duration:12s; animation-delay:1.5s; width:2px; }
-.steam-line:nth-child(3)  { left:38%; height:50vh; animation-duration:8s;  animation-delay:3s; }
-.steam-line:nth-child(4)  { left:55%; height:70vh; animation-duration:11s; animation-delay:0.5s; width:2px; }
-.steam-line:nth-child(5)  { left:70%; height:65vh; animation-duration:10s; animation-delay:2s; }
-.steam-line:nth-child(6)  { left:85%; height:55vh; animation-duration:9s;  animation-delay:4s; }
-.steam-line:nth-child(7)  { left:15%; height:75vh; animation-duration:13s; animation-delay:6s; width:2px; }
-.steam-line:nth-child(8)  { left:48%; height:45vh; animation-duration:7s;  animation-delay:2.5s; }
-.steam-line:nth-child(9)  { left:62%; height:80vh; animation-duration:14s; animation-delay:5s; }
-.steam-line:nth-child(10) { left:30%; height:60vh; animation-duration:10s; animation-delay:7s; }
-@keyframes rise { 0%{transform:translateY(0) scaleX(1);opacity:0} 10%{opacity:1} 50%{transform:translateY(-45vh) scaleX(2);opacity:0.6} 90%{opacity:0.1} 100%{transform:translateY(-85vh) scaleX(0.5);opacity:0} }
-.hero::before { content:''; position:absolute; bottom:-10%; left:50%; transform:translateX(-50%); width:70%; height:50%; background:radial-gradient(ellipse, rgba(184,150,90,0.12) 0%, transparent 70%); pointer-events:none; }
-.hero-tag { font-size:0.68rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:2rem; animation:fadeUp 1s ease both; }
-.hero-kanji { font-family:'Cormorant Garamond',serif; font-size:clamp(4rem,12vw,8rem); font-weight:300; line-height:1; color:var(--fog); margin-bottom:0.3rem; animation:fadeUp 1s 0.15s ease both; }
-.hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(0.85rem,2.5vw,1.1rem); font-weight:300; font-style:italic; letter-spacing:0.12em; color:var(--stone); margin-bottom:2.5rem; animation:fadeUp 1s 0.3s ease both; }
-.divider-line { width:40px; height:1px; background:var(--gold); margin:0 auto 2.5rem; animation:expand 1s 0.45s ease both; transform-origin:center; }
-@keyframes expand { from{transform:scaleX(0);opacity:0} to{transform:scaleX(1);opacity:1} }
-.hero-desc { font-size:clamp(0.95rem,2vw,1.05rem); font-weight:300; color:var(--warm); max-width:480px; line-height:1.85; margin-bottom:3.5rem; animation:fadeUp 1s 0.45s ease both; }
-.hero-desc em { font-style:italic; color:var(--fog); }
-.mc-wrap { width:100%; max-width:480px; animation:fadeUp 1s 0.6s ease both; }
-.mc-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin-bottom:1rem; display:block; }
-#mc_embed_signup { background:transparent !important; font-family:'DM Sans',sans-serif !important; width:100% !important; }
-#mc_embed_signup form { padding:0 !important; }
-#mc_embed_signup .mc-field-group { width:100% !important; padding-bottom:0 !important; }
-#mc_embed_signup .mc-field-group label { display:none !important; }
-#mc_embed_signup_scroll h2 { display:none !important; }
-#mc_embed_signup .indicates-required { display:none !important; }
-#mc_embed_signup #mc_embed_signup_scroll { display:flex; border:1px solid rgba(184,150,90,0.35); border-radius:2px; overflow:hidden; transition:border-color 0.3s; }
-#mc_embed_signup #mc_embed_signup_scroll:focus-within { border-color:rgba(184,150,90,0.7); }
-#mc_embed_signup input.email { flex:1 !important; background:rgba(255,255,255,0.04) !important; border:none !important; border-radius:0 !important; outline:none !important; padding:0.85rem 1.1rem !important; color:var(--fog) !important; font-family:'DM Sans',sans-serif !important; font-size:0.9rem !important; font-weight:300 !important; height:auto !important; width:auto !important; min-width:0 !important; box-shadow:none !important; }
-#mc_embed_signup input.email::placeholder { color:var(--stone) !important; }
-#mc_embed_signup .clear { flex-shrink:0 !important; width:auto !important; float:none !important; }
-#mc_embed_signup input[type=submit] { background:var(--gold) !important; border:none !important; border-radius:0 !important; padding:0.85rem 1.4rem !important; color:var(--ink) !important; font-family:'DM Sans',sans-serif !important; font-size:0.78rem !important; font-weight:500 !important; letter-spacing:0.12em !important; text-transform:uppercase !important; cursor:pointer !important; height:auto !important; white-space:nowrap !important; transition:background 0.25s !important; }
-#mc_embed_signup input[type=submit]:hover { background:#c9a76a !important; }
-#mc_embed_signup #mce-responses { margin:0 !important; padding:0 !important; clear:both !important; }
-#mc_embed_signup #mce-success-response { color:var(--gold) !important; font-family:'Cormorant Garamond',serif !important; font-style:italic !important; font-size:1rem !important; padding:0.6rem 0 !important; background:transparent !important; }
-#mc_embed_signup #mce-error-response { color:#e07070 !important; font-size:0.8rem !important; padding:0.5rem 0 !important; background:transparent !important; }
-.mc-sub { font-size:0.75rem; color:var(--stone); margin-top:0.8rem; text-align:center; }
-.counter-wrap { margin-top:1.8rem; display:flex; align-items:center; justify-content:center; gap:0.6rem; animation:fadeUp 1s 0.75s ease both; }
-.counter-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-.counter-text { font-size:0.75rem; color:var(--stone); }
-.counter-num { color:var(--gold); font-weight:500; }
-.scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.4rem; opacity:0.4; animation:fadeIn 1.5s 1.5s ease both; }
-.scroll-hint span { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); }
-.scroll-arrow { width:1px; height:30px; background:linear-gradient(to bottom, var(--stone), transparent); animation:scrollDrop 2s 1.5s ease infinite; }
-@keyframes scrollDrop { 0%{opacity:0;transform:translateY(-6px)} 50%{opacity:1} 100%{opacity:0;transform:translateY(6px)} }
-.pillars { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid rgba(255,255,255,0.07); }
-.pillar { padding:3.5rem 2.5rem; border-right:1px solid rgba(255,255,255,0.07); position:relative; overflow:hidden; }
-.pillar:last-child { border-right:none; }
-.pillar::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, var(--gold), transparent); opacity:0; transition:opacity 0.4s; }
-.pillar:hover::before { opacity:1; }
-.pillar-num { font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(184,150,90,0.15); line-height:1; margin-bottom:0.5rem; }
-.pillar-jp { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); margin-bottom:0.3rem; font-style:italic; }
-.pillar-en { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin-bottom:1.2rem; }
-.pillar-desc { font-size:0.9rem; line-height:1.8; color:var(--warm); font-weight:300; }
-.details-band { background:rgba(255,255,255,0.025); border-top:1px solid rgba(255,255,255,0.07); border-bottom:1px solid rgba(255,255,255,0.07); padding:3rem 2.5rem; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-.detail-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin-bottom:0.5rem; }
-.detail-value { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:300; color:var(--fog); }
-.detail-value small { font-size:0.75rem; color:var(--stone); font-family:'DM Sans',sans-serif; font-weight:300; display:block; margin-top:0.15rem; }
-.location-teaser { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--stone); }
-.bottom-cta { padding:5rem 1.5rem; text-align:center; }
-.cta-heading { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,5vw,3rem); font-weight:300; font-style:italic; color:var(--fog); margin-bottom:0.8rem; line-height:1.3; }
-.cta-sub { font-size:0.85rem; color:var(--stone); margin-bottom:2.5rem; }
-.cta-location { display:inline-flex; align-items:center; gap:0.5rem; margin-top:2rem; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone); border:1px solid rgba(255,255,255,0.1); padding:0.5rem 1.2rem; border-radius:1px; }
-.cta-dot { width:5px; height:5px; border-radius:50%; background:var(--gold); }
-footer { padding:1.5rem 2.5rem; border-top:1px solid rgba(255,255,255,0.07); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-.footer-brand { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:300; color:var(--fog); letter-spacing:0.1em; }
-.footer-note { font-size:0.72rem; color:var(--stone); }
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:0.4} }
-@media (max-width:640px) { .pillars{grid-template-columns:1fr} .pillar{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07)} .details-band{grid-template-columns:1fr 1fr} footer{flex-direction:column;text-align:center} }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1a1814;--fog:#f5f2ec;--warm:#e8e0d0;--gold:#b8965a;--stone:#7a7268}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--fog);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:3rem 1.5rem;text-align:center;overflow:hidden}
+.steam-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.steam-line{position:absolute;bottom:0;width:1px;background:linear-gradient(to top,transparent,rgba(255,255,255,0.07) 60%,transparent);animation:rise linear infinite;opacity:0}
+.steam-line:nth-child(1){left:10%;height:60vh;animation-duration:9s;animation-delay:0s}
+.steam-line:nth-child(2){left:23%;height:80vh;animation-duration:12s;animation-delay:1.5s;width:2px}
+.steam-line:nth-child(3){left:38%;height:50vh;animation-duration:8s;animation-delay:3s}
+.steam-line:nth-child(4){left:55%;height:70vh;animation-duration:11s;animation-delay:0.5s;width:2px}
+.steam-line:nth-child(5){left:70%;height:65vh;animation-duration:10s;animation-delay:2s}
+.steam-line:nth-child(6){left:85%;height:55vh;animation-duration:9s;animation-delay:4s}
+.steam-line:nth-child(7){left:15%;height:75vh;animation-duration:13s;animation-delay:6s;width:2px}
+.steam-line:nth-child(8){left:48%;height:45vh;animation-duration:7s;animation-delay:2.5s}
+.steam-line:nth-child(9){left:62%;height:80vh;animation-duration:14s;animation-delay:5s}
+.steam-line:nth-child(10){left:30%;height:60vh;animation-duration:10s;animation-delay:7s}
+@keyframes rise{0%{transform:translateY(0) scaleX(1);opacity:0}10%{opacity:1}50%{transform:translateY(-45vh) scaleX(2);opacity:0.6}90%{opacity:0.1}100%{transform:translateY(-85vh) scaleX(0.5);opacity:0}}
+.hero::before{content:'';position:absolute;bottom:-10%;left:50%;transform:translateX(-50%);width:70%;height:50%;background:radial-gradient(ellipse,rgba(184,150,90,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-tag{font-size:0.85rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;animation:fadeUp 1s ease both}
+.hero-kanji{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,13vw,9rem);font-weight:300;line-height:1;color:var(--fog);margin-bottom:0.3rem;animation:fadeUp 1s 0.15s ease both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:300;font-style:italic;letter-spacing:0.12em;color:var(--stone);margin-bottom:2.5rem;animation:fadeUp 1s 0.3s ease both}
+.divider-line{width:40px;height:1px;background:var(--gold);margin:0 auto 2.5rem;animation:expand 1s 0.45s ease both;transform-origin:center}
+@keyframes expand{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+.hero-desc{font-size:clamp(1.1rem,2.5vw,1.25rem);font-weight:300;color:var(--warm);max-width:540px;line-height:1.9;margin-bottom:3.5rem;animation:fadeUp 1s 0.45s ease both}
+.hero-desc em{font-style:italic;color:var(--fog)}
+.mc-wrap{width:100%;max-width:500px;animation:fadeUp 1s 0.6s ease both}
+.mc-label{font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);margin-bottom:1rem;display:block}
+#mc_embed_signup{background:transparent!important;font-family:'DM Sans',sans-serif!important;width:100%!important}
+#mc_embed_signup form{padding:0!important}
+#mc_embed_signup .mc-field-group{width:100%!important;padding-bottom:0!important}
+#mc_embed_signup .mc-field-group label{display:none!important}
+#mc_embed_signup_scroll h2{display:none!important}
+#mc_embed_signup .indicates-required{display:none!important}
+#mc_embed_signup #mc_embed_signup_scroll{display:flex;border:1px solid rgba(184,150,90,0.35);border-radius:2px;overflow:hidden;transition:border-color 0.3s}
+#mc_embed_signup #mc_embed_signup_scroll:focus-within{border-color:rgba(184,150,90,0.7)}
+#mc_embed_signup input.email{flex:1!important;background:rgba(255,255,255,0.04)!important;border:none!important;border-radius:0!important;outline:none!important;padding:0.95rem 1.2rem!important;color:var(--fog)!important;font-family:'DM Sans',sans-serif!important;font-size:1rem!important;font-weight:300!important;height:auto!important;width:auto!important;min-width:0!important;box-shadow:none!important}
+#mc_embed_signup input.email::placeholder{color:var(--stone)!important}
+#mc_embed_signup .clear{flex-shrink:0!important;width:auto!important;float:none!important}
+#mc_embed_signup input[type=submit]{background:var(--gold)!important;border:none!important;border-radius:0!important;padding:0.95rem 1.6rem!important;color:var(--ink)!important;font-family:'DM Sans',sans-serif!important;font-size:0.85rem!important;font-weight:500!important;letter-spacing:0.12em!important;text-transform:uppercase!important;cursor:pointer!important;height:auto!important;white-space:nowrap!important;transition:background 0.25s!important}
+#mc_embed_signup input[type=submit]:hover{background:#c9a76a!important}
+#mc_embed_signup #mce-responses{margin:0!important;padding:0!important;clear:both!important}
+#mc_embed_signup #mce-success-response{color:var(--gold)!important;font-family:'Cormorant Garamond',serif!important;font-style:italic!important;font-size:1.15rem!important;padding:0.6rem 0!important;background:transparent!important}
+#mc_embed_signup #mce-error-response{color:#e07070!important;font-size:0.9rem!important;padding:0.5rem 0!important;background:transparent!important}
+.mc-sub{font-size:0.85rem;color:var(--stone);margin-top:0.8rem;text-align:center}
+.counter-wrap{margin-top:1.8rem;display:flex;align-items:center;justify-content:center;gap:0.6rem;animation:fadeUp 1s 0.75s ease both}
+.counter-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.counter-text{font-size:0.9rem;color:var(--stone)}
+.counter-num{color:var(--gold);font-weight:500}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;opacity:0.4;animation:fadeIn 1.5s 1.5s ease both}
+.scroll-hint span{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone)}
+.scroll-arrow{width:1px;height:30px;background:linear-gradient(to bottom,var(--stone),transparent);animation:scrollDrop 2s 1.5s ease infinite}
+@keyframes scrollDrop{0%{opacity:0;transform:translateY(-6px)}50%{opacity:1}100%{opacity:0;transform:translateY(6px)}}
+.pillars{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,0.07)}
+.pillar{padding:4rem 3rem;border-right:1px solid rgba(255,255,255,0.07);position:relative;overflow:hidden}
+.pillar:last-child{border-right:none}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}
+.pillar:hover::before{opacity:1}
+.pillar-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(184,150,90,0.15);line-height:1;margin-bottom:0.8rem}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold);margin-bottom:0.4rem;font-weight:300}
+.pillar-sub{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);margin-bottom:1.4rem}
+.pillar-desc{font-size:1rem;line-height:1.85;color:var(--warm);font-weight:300}
+.details-band{background:rgba(255,255,255,0.025);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);padding:3.5rem 3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.detail-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);margin-bottom:0.6rem}
+.detail-value{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--fog)}
+.detail-value small{font-size:0.85rem;color:var(--stone);font-family:'DM Sans',sans-serif;font-weight:300;display:block;margin-top:0.2rem}
+.location-teaser{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone)}
+.bottom-cta{padding:6rem 1.5rem;text-align:center}
+.cta-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,3.5rem);font-weight:300;font-style:italic;color:var(--fog);margin-bottom:1rem;line-height:1.3}
+.cta-sub{font-size:1rem;color:var(--stone);margin-bottom:2.5rem}
+.cta-location{display:inline-flex;align-items:center;gap:0.5rem;margin-top:2rem;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);border:1px solid rgba(255,255,255,0.1);padding:0.6rem 1.4rem;border-radius:1px}
+.cta-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+footer{padding:1.8rem 3rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--fog);letter-spacing:0.1em}
+.footer-note{font-size:0.82rem;color:var(--stone)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:0.4}}
+@media(max-width:640px){.pillars{grid-template-columns:1fr}.pillar{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07)}.details-band{grid-template-columns:1fr 1fr}footer{flex-direction:column;text-align:center}}
 </style>
 </head>
 <body>
 <section class="hero">
-  <div class="steam-bg"><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div></div>
-  <p class="hero-tag">Opening Soon &nbsp;·&nbsp; San Jose, California</p>
-  <h1 class="hero-kanji">ととのう</h1>
-  <p class="hero-title">to find harmony · to feel complete</p>
-  <div class="divider-line"></div>
-  <p class="hero-desc">Silicon Valley's first <em>private</em> Japanese sauna studio.<br>Your own suite — sauna, cold plunge, rooftop air bath.<br>No strangers. No rushing. Just the ritual.</p>
-  <div class="mc-wrap">
-    <span class="mc-label">Join the founding waitlist</span>
-    <div id="mc_embed_shell"><div id="mc_embed_signup">
-      <form action="https://outlook.us16.list-manage.com/subscribe/post?u=1125783c4b7fe9c2e16202adc&amp;id=e06e03ff79&amp;f_id=00911fe1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-        <div id="mc_embed_signup_scroll">
-          <div class="mc-field-group"><label for="mce-EMAIL">Email Address</label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required value="" placeholder="your@email.com"></div>
-          <div id="mce-responses" class="clear"><div class="response" id="mce-error-response" style="display:none;"></div><div class="response" id="mce-success-response" style="display:none;"></div></div>
-          <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_1125783c4b7fe9c2e16202adc_e06e03ff79" tabindex="-1" value=""></div>
-          <div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Reserve My Spot"></div>
-        </div>
-      </form>
-    </div></div>
-    <p class="mc-sub">Founding members receive priority booking &amp; an exclusive opening offer.</p>
-  </div>
-  <div class="counter-wrap"><div class="counter-dot"></div><span class="counter-text">Be among the first in <span class="counter-num">San Jose</span></span></div>
-  <div class="scroll-hint"><span>The Experience</span><div class="scroll-arrow"></div></div>
+<div class="steam-bg"><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div></div>
+<p class="hero-tag">Opening Soon &nbsp;·&nbsp; San Jose, California</p>
+<h1 class="hero-kanji">ととのう</h1>
+<p class="hero-title">to find harmony · to feel complete</p>
+<div class="divider-line"></div>
+<p class="hero-desc">Silicon Valley's first <em>private</em> Japanese sauna studio.<br>Your own suite — sauna, cold plunge, rooftop air bath.<br>No strangers. No rushing. Just the ritual.</p>
+<div class="mc-wrap">
+<span class="mc-label">Join the founding waitlist</span>
+<div id="mc_embed_shell"><div id="mc_embed_signup">
+<form action="https://outlook.us16.list-manage.com/subscribe/post?u=1125783c4b7fe9c2e16202adc&amp;id=e06e03ff79&amp;f_id=00911fe1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+<div id="mc_embed_signup_scroll">
+<div class="mc-field-group"><label for="mce-EMAIL">Email Address</label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required value="" placeholder="your@email.com"></div>
+<div id="mce-responses" class="clear"><div class="response" id="mce-error-response" style="display:none;"></div><div class="response" id="mce-success-response" style="display:none;"></div></div>
+<div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_1125783c4b7fe9c2e16202adc_e06e03ff79" tabindex="-1" value=""></div>
+<div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Reserve My Spot"></div>
+</div></form></div></div>
+<p class="mc-sub">Founding members receive priority booking &amp; an exclusive opening offer.</p>
+</div>
+<div class="counter-wrap"><div class="counter-dot"></div><span class="counter-text">Be among the first in <span class="counter-num">San Jose</span></span></div>
+<div class="scroll-hint"><span>The Experience</span><div class="scroll-arrow"></div></div>
 </section>
 <section class="pillars">
-  <div class="pillar"><div class="pillar-num">01</div><div class="pillar-jp">サウナ</div><div class="pillar-en">Finnish Sauna</div><p class="pillar-desc">Cedar-lined private suite. 9kW electric heater. Auto-löyly steam system. 80–100°C. Three cycles — each one deeper than the last.</p></div>
-  <div class="pillar"><div class="pillar-num">02</div><div class="pillar-jp">水風呂</div><div class="pillar-en">Cold Plunge</div><p class="pillar-desc">Your own plunge. 10–15°C held constant. Chiller-cooled, UV-sanitised, continuously filtered. The contrast that unlocks everything.</p></div>
-  <div class="pillar"><div class="pillar-num">03</div><div class="pillar-jp">外気浴</div><div class="pillar-en">Outdoor Air Bath</div><p class="pillar-desc">Rooftop terrace. Open sky. Zero-gravity lounger. Silence. This is <em>ototanoi</em> — the moment of complete stillness the body has earned.</p></div>
+<div class="pillar">
+<div class="pillar-num">01</div>
+<div class="pillar-title">Private Sauna Suite</div>
+<div class="pillar-sub">Heat · Steam · Ritual</div>
+<p class="pillar-desc">Cedar-lined private suite with a 9kW electric heater and auto-löyly steam system. Temperature held at 80–100°C. Three cycles — each one deeper than the last. Yours alone.</p>
+</div>
+<div class="pillar">
+<div class="pillar-num">02</div>
+<div class="pillar-title">Cold Plunge</div>
+<div class="pillar-sub">Contrast · Recovery · Clarity</div>
+<p class="pillar-desc">Your own dedicated cold plunge at 10–15°C, held constant by a commercial chiller. UV-sanitised and continuously filtered. The contrast that resets everything — body and mind.</p>
+</div>
+<div class="pillar">
+<div class="pillar-num">03</div>
+<div class="pillar-title">Rooftop Air Bath</div>
+<div class="pillar-sub">Sky · Stillness · Restoration</div>
+<p class="pillar-desc">Step onto the open-air rooftop terrace. Zero-gravity lounger. Silence. Cool breeze. This is the moment the Japanese call <em>ototanoi</em> — the stillness your body has earned.</p>
+</div>
 </section>
 <div class="details-band">
-  <div class="detail-item"><div class="detail-label">Session</div><div class="detail-value">90 min<small>All three stages included</small></div></div>
-  <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-value">from $115<small>Per private suite · 1 or 2 guests</small></div></div>
-  <div class="detail-item"><div class="detail-label">Schedule</div><div class="detail-value">Tue–Sun<small>Until 2 am · Mon closed</small></div></div>
-  <div class="detail-item"><div class="detail-label">Format</div><div class="detail-value">Fully Private<small>Your suite. Your ritual. No shared spaces.</small></div></div>
-  <div class="detail-item"><div class="detail-label">Location</div><div class="detail-value" style="font-size:1rem;">San Jose, CA<small><span class="location-teaser"><svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="5.5" width="9" height="7" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M3 5.5V3.5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>Address revealed to waitlist members</span></small></div></div>
-  <div class="detail-item"><div class="detail-label">Opening</div><div class="detail-value">Late 2026<small>Waitlist members notified first</small></div></div>
+<div class="detail-item"><div class="detail-label">Session</div><div class="detail-value">90 min<small>All three stages included</small></div></div>
+<div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-value">from $115<small>Per private suite · 1 or 2 guests</small></div></div>
+<div class="detail-item"><div class="detail-label">Schedule</div><div class="detail-value">Tue–Sun<small>Until 2 am · Mon closed</small></div></div>
+<div class="detail-item"><div class="detail-label">Format</div><div class="detail-value">Fully Private<small>Your suite. Your ritual. No shared spaces.</small></div></div>
+<div class="detail-item"><div class="detail-label">Location</div><div class="detail-value" style="font-size:1.1rem;">San Jose, CA<small><span class="location-teaser"><svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="5.5" width="9" height="7" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M3 5.5V3.5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>Address revealed to waitlist members</span></small></div></div>
+<div class="detail-item"><div class="detail-label">Opening</div><div class="detail-value">Late 2026<small>Waitlist members notified first</small></div></div>
 </div>
 <section class="bottom-cta">
-  <h2 class="cta-heading">The city needed this.<br>Now it has it.</h2>
-  <p class="cta-sub">Be among the first to experience it.</p>
-  <div class="mc-wrap" style="margin:0 auto;">
-    <div style="display:flex;border:1px solid rgba(184,150,90,0.35);border-radius:2px;overflow:hidden;">
-      <form action="https://outlook.us16.list-manage.com/subscribe/post?u=1125783c4b7fe9c2e16202adc&amp;id=e06e03ff79&amp;f_id=00911fe1f0" method="post" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="display:flex;width:100%;">
-        <input type="email" name="EMAIL" required placeholder="your@email.com" style="flex:1;background:rgba(255,255,255,0.04);border:none;outline:none;padding:0.85rem 1.1rem;color:var(--fog);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:300;">
-        <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_1125783c4b7fe9c2e16202adc_e06e03ff79" tabindex="-1" value=""></div>
-        <input type="submit" value="Join Waitlist" style="background:var(--gold);border:none;padding:0.85rem 1.4rem;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">
-      </form>
-    </div>
-  </div>
-  <div class="cta-location"><div class="cta-dot"></div>San Jose · California · Opening 2026</div>
+<h2 class="cta-heading">The city needed this.<br>Now it has it.</h2>
+<p class="cta-sub">Be among the first to experience it.</p>
+<div class="mc-wrap" style="margin:0 auto;">
+<div style="display:flex;border:1px solid rgba(184,150,90,0.35);border-radius:2px;overflow:hidden;">
+<form action="https://outlook.us16.list-manage.com/subscribe/post?u=1125783c4b7fe9c2e16202adc&amp;id=e06e03ff79&amp;f_id=00911fe1f0" method="post" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="display:flex;width:100%;">
+<input type="email" name="EMAIL" required placeholder="your@email.com" style="flex:1;background:rgba(255,255,255,0.04);border:none;outline:none;padding:0.95rem 1.2rem;color:var(--fog);font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:300;">
+<div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_1125783c4b7fe9c2e16202adc_e06e03ff79" tabindex="-1" value=""></div>
+<input type="submit" value="Join Waitlist" style="background:var(--gold);border:none;padding:0.95rem 1.6rem;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">
+</form></div></div>
+<div class="cta-location"><div class="cta-dot"></div>San Jose · California · Opening 2026</div>
 </section>
 <footer>
-  <div class="footer-brand">San Jose Sauna</div>
-  <div class="footer-note">sanjosesauna.com &nbsp;·&nbsp; Opening 2026 &nbsp;·&nbsp; San Jose, CA</div>
+<div class="footer-brand">San Jose Sauna</div>
+<div class="footer-note">sanjosesauna.com &nbsp;·&nbsp; Opening 2026 &nbsp;·&nbsp; San Jose, CA</div>
 </footer>
 <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
 <script type="text/javascript">(function($){window.fnames=new Array();window.ftypes=new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj=jQuery.noConflict(true);</script>
