@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn-images.mailchimp.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action https://outlook.us16.list-manage.com; connect-src 'self'; base-uri 'self'; frame-ancestors 'none';">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=(), geolocation=(), microphone=(), camera=(), payment=()">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>San Jose Sauna — Private Japanese Sauna Studio</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -179,5 +186,25 @@ footer{padding:1.8rem 3rem;border-top:1px solid rgba(255,255,255,0.07);display:f
 </footer>
 <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
 <script type="text/javascript">(function($){window.fnames=new Array();window.ftypes=new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj=jQuery.noConflict(true);</script>
+  <script>
+    (function(){
+        'use strict';
+        var K='sjs_submit_log',MAX=3,WIN=600000;
+        function getA(){try{var r=sessionStorage.getItem(K);return r?JSON.parse(r):[]}catch(e){return []}}
+        function saveA(a){try{sessionStorage.setItem(K,JSON.stringify(a))}catch(e){}}
+        function rateLimited(){var now=Date.now(),a=getA().filter(function(t){return now-t<WIN});saveA(a);if(a.length>=MAX)return true;a.push(now);saveA(a);return false}
+        function validEmail(e){return /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/.test(e.trim())}
+        function showErr(m){var x=document.getElementById('sjs-err');if(x)x.remove();var p=document.createElement('p');p.id='sjs-err';p.textContent=m;p.style.cssText='color:#c0392b;font-size:0.8rem;margin-top:0.5rem;';var f=document.getElementById('mc-embedded-subscribe-form');if(f)f.appendChild(p)}
+        var form=document.getElementById('mc-embedded-subscribe-form');
+        if(form){form.addEventListener('submit',function(e){
+              var em=document.getElementById('mce-EMAIL');
+              if(!em||!validEmail(em.value)){e.preventDefault();showErr('Please enter a valid email address.');return false}
+              if(rateLimited()){e.preventDefault();showErr('Too many attempts. Please wait a few minutes.');return false}
+              var btn=document.getElementById('mc-embedded-subscribe');
+              if(btn){btn.disabled=true;btn.value='Joining…';setTimeout(function(){btn.disabled=false;btn.value='Join Waitlist'},5000)}
+        })}
+    }());
+  </script>
+  </script>
 </body>
 </html>
