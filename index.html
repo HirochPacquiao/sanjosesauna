@@ -13,7 +13,6 @@
 <title>San Jose Sauna — Private Japanese Sauna Studio</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -184,30 +183,32 @@ footer{padding:1.8rem 3rem;border-top:1px solid rgba(255,255,255,0.07);display:f
 <div class="footer-brand">San Jose Sauna</div>
 <div class="footer-note">sanjosesauna.com &nbsp;·&nbsp; Opening 2026 &nbsp;·&nbsp; San Jose, CA</div>
 </footer>
-<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-<script type="text/javascript">(function($){window.fnames=new Array();window.ftypes=new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj=jQuery.noConflict(true);</script>
-  <script>
-    (function(){
-        'use strict';
-        var K='sjs_submit_log',MAX=3,WIN=600000;
-        function getA(){try{var r=sessionStorage.getItem(K);return r?JSON.parse(r):[]}catch(e){return []}}
-        function saveA(a){try{sessionStorage.setItem(K,JSON.stringify(a))}catch(e){}}
-        function rateLimited(){var now=Date.now(),a=getA().filter(function(t){return now-t<WIN});saveA(a);if(a.length>=MAX)return true;a.push(now);saveA(a);return false}
-        function validEmail(e){return /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/.test(e.trim())}
-        function showErr(m){var x=document.getElementById('sjs-err');if(x)x.remove();var p=document.createElement('p');p.id='sjs-err';p.textContent=m;p.style.cssText='color:#c0392b;font-size:0.8rem;margin-top:0.5rem;';var f=document.getElementById('mc-embedded-subscribe-form');if(f)f.appendChild(p)}
-        var form=document.getElementById('mc-embedded-subscribe-form');
-        if(form){form.addEventListener('submit',function(e){
-              var em=document.getElementById('mce-EMAIL');
-              if(!em||!validEmail(em.value)){e.preventDefault();showErr('Please enter a valid email address.');return false}
-              if(rateLimited()){e.preventDefault();showErr('Too many attempts. Please wait a few minutes.');return false}
-              var btn=document.getElementById('mc-embedded-subscribe');
-              if(btn){btn.disabled=true;btn.value='Joining…';setTimeout(function(){btn.disabled=false;btn.value='Join Waitlist'},5000)}
-                        setTimeout(function(){window.location.href='/thanks.html'},150);
-        })}
-                    }());
-  </script>
-  </script>
-    (function(){var f=document.getElementById('mc-embedded-subscribe-form');if(!f)return;var fr=document.createElement('iframe');fr.name='mc_frame';fr.style.display='none';fr.setAttribute('aria-hidden','true');document.body.appendChild(fr);f.target='mc_frame';}());
-    <script>document.addEventListener('submit',function(e){var f=document.getElementById('mc-embedded-subscribe-form');if(e.target!==f)return;e.preventDefault();e.stopImmediatePropagation();var em=document.getElementById('mce-EMAIL');if(!em||!em.value.trim())return;var cb='_sjs'+Date.now(),s=document.createElement('script');window[cb]=function(){delete window[cb];s.parentNode&&s.parentNode.removeChild(s);};s.src=f.action.replace('/post?','/post-json?')+'&EMAIL='+encodeURIComponent(em.value.trim())+'&c='+cb;document.body.appendChild(s);setTimeout(function(){window.location.href='/thanks.html';},350);},true);</script></script>
+<script>
+(function(){
+  'use strict';
+  var K='sjs_log',MAX=3,WIN=600000;
+  function getA(){try{var r=sessionStorage.getItem(K);return r?JSON.parse(r):[]}catch(e){return []}}
+  function saveA(a){try{sessionStorage.setItem(K,JSON.stringify(a))}catch(e){}}
+  function rateLimited(){var n=Date.now(),a=getA().filter(function(t){return n-t<WIN});saveA(a);if(a.length>=MAX)return true;a.push(n);saveA(a);return false}
+  function validEmail(v){return /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/.test(v.trim())}
+  function showErr(m){var x=document.getElementById('sjs-err');if(x)x.remove();var p=document.createElement('p');p.id='sjs-err';p.textContent=m;p.style.cssText='color:#c0392b;font-size:0.85rem;margin-top:0.75rem;text-align:center;';var f=document.getElementById('mc-embedded-subscribe-form');if(f)f.appendChild(p);}
+  document.addEventListener('submit',function(e){
+    var f=document.getElementById('mc-embedded-subscribe-form');
+    if(e.target!==f)return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var em=document.getElementById('mce-EMAIL');
+    if(!em||!validEmail(em.value)){showErr('Please enter a valid email address.');return;}
+    if(rateLimited()){showErr('Too many attempts. Please wait a few minutes.');return;}
+    var btn=document.getElementById('mc-embedded-subscribe');
+    if(btn){btn.disabled=true;btn.value='Joining\u2026';}
+    var cb='_sjs'+Date.now(),s=document.createElement('script');
+    window[cb]=function(){delete window[cb];s.parentNode&&s.parentNode.removeChild(s);};
+    s.src=f.action.replace('/post?','/post-json?')+'&EMAIL='+encodeURIComponent(em.value.trim())+'&c='+cb;
+    document.body.appendChild(s);
+    setTimeout(function(){window.location.href='/thanks.html';},350);
+  },true);
+}());
+</script>
 </body>
 </html>
