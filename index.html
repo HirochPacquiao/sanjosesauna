@@ -208,5 +208,6 @@ footer{padding:1.8rem 3rem;border-top:1px solid rgba(255,255,255,0.07);display:f
   </script>
   </script>
     (function(){var f=document.getElementById('mc-embedded-subscribe-form');if(!f)return;var fr=document.createElement('iframe');fr.name='mc_frame';fr.style.display='none';fr.setAttribute('aria-hidden','true');document.body.appendChild(fr);f.target='mc_frame';}());
+    <script>document.addEventListener('submit',function(e){var f=document.getElementById('mc-embedded-subscribe-form');if(e.target!==f)return;e.preventDefault();e.stopImmediatePropagation();var em=document.getElementById('mce-EMAIL');if(!em||!em.value.trim())return;var cb='_sjs'+Date.now(),s=document.createElement('script');window[cb]=function(){delete window[cb];s.parentNode&&s.parentNode.removeChild(s);};s.src=f.action.replace('/post?','/post-json?')+'&EMAIL='+encodeURIComponent(em.value.trim())+'&c='+cb;document.body.appendChild(s);setTimeout(function(){window.location.href='/thanks.html';},350);},true);</script></script>
 </body>
 </html>
