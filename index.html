@@ -202,8 +202,9 @@ footer{padding:1.8rem 3rem;border-top:1px solid rgba(255,255,255,0.07);display:f
               if(rateLimited()){e.preventDefault();showErr('Too many attempts. Please wait a few minutes.');return false}
               var btn=document.getElementById('mc-embedded-subscribe');
               if(btn){btn.disabled=true;btn.value='Joining…';setTimeout(function(){btn.disabled=false;btn.value='Join Waitlist'},5000)}
+                        setTimeout(function(){window.location.href='/thanks.html'},150);
         })}
-    }());
+                    }());
   </script>
   </script>
 </body>
